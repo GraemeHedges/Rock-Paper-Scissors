@@ -24,6 +24,31 @@
 
     //Description
 
+    function computerPlay(){
+       let choice =  Math.floor(Math.random() * 3);
+       if (choice === 0) {
+           return "Rock";
+       } else if (choice === 1) {
+           return "Paper";
+       } else {
+           return "Scissors";
+       }
+    }
+
+    function playRound(computerSelection, playerSelection) {
+        // computerPlay gives us the computer Selection
+        // playerSelection gives us the players choice (new function?)
+        // make the players choice case insensative
+        // compare the players choice to the computer selection using the normal logic
+        // return a win or lose message depending on result via console.log()
+    }
+
+    function game() {
+        for (i=0; i <5; i++) {
+            console.log(i);
+        }
+    }
+
   </script>
 </body>
 </html>
