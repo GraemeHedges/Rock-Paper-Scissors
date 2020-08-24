@@ -35,13 +35,33 @@
        }
     }
 
-    function playRound(computerSelection, playerSelection) {
+        // test array for same function
+
+    function computerPlay2(){
+        let choice = ["Rock" , "Paper" , "Scissors"];
+        return choice[Math.floor(Math.random() * choice.length)]
+    }
+
+    function playerSelection(){
+        // prompt the player to enter their choice (offer options?)
+        // convert that string to initla capital and then lower case, eg rOcK to Rock
+        // check that option entered is one of either Rock, Paper or Scissors
+        // Request input again until option entered is one of the above
+        // Return the selected option
+    }
+
+    function playRound(playerSelection,computerSelection) {
         // computerPlay gives us the computer Selection
         // playerSelection gives us the players choice (new function?)
-        // make the players choice case insensative
         // compare the players choice to the computer selection using the normal logic
         // return a win or lose message depending on result via console.log()
+        computerSelection = computerPlay();
+        console.log(playerSelection); // testing if the argument will take the user input directly
+        console.log(computerSelection); // testing the function call
+        
     }
+
+        // game function - testing loop
 
     function game() {
         for (i=0; i <5; i++) {
