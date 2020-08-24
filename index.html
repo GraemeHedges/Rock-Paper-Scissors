@@ -42,10 +42,26 @@
         return choice[Math.floor(Math.random() * choice.length)]
     }
 
-    function playerSelection(){
+    function playerPlay(){
         // prompt the player to enter their choice (offer options?)
-        // convert that string to initla capital and then lower case, eg rOcK to Rock
+        let playerChoice; //= prompt("Choose your weapon! Please enter Rock, Paper or Scissors.", "");
+        // convert that string to initial capital and then lower case, eg rOcK to Rock
+        let choiceFormatted; //= playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
+        let test;
+        //return choiceFormatted; // test
         // check that option entered is one of either Rock, Paper or Scissors
+        do { //get playerChoice, convert to correct format in choiceFormatted
+             //if not one of the options repeat request
+            playerChoice = prompt("Choose your weapon! Please enter Rock, Paper or Scissors.", "");
+            choiceFormatted = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
+            // test choice is a valid input
+            if(choiceFormatted === "Rock" || choiceFormatted === "Paper" || choiceFormatted === "Scissors") {
+                //pass 1 to break while
+                test = 1;
+            }      
+        } while (test != 1);
+        return choiceFormatted;
+        //test output
         // Request input again until option entered is one of the above
         // Return the selected option
     }
@@ -55,10 +71,27 @@
         // playerSelection gives us the players choice (new function?)
         // compare the players choice to the computer selection using the normal logic
         // return a win or lose message depending on result via console.log()
-        computerSelection = computerPlay();
-        console.log(playerSelection); // testing if the argument will take the user input directly
-        console.log(computerSelection); // testing the function call
-        
+        playerSelection = playerPlay();
+        computerSelection = computerPlay();    
+        //console.log(playerSelection); // testing if the argument will take the user input directly
+        //console.log(computerSelection); // testing the function call
+
+        // GAME LOGIC
+        // first test if both selections are equal, record tie and do not adjust the score
+        if (playerSelection === computerSelection) {
+            console.log("Player and Computer chose " + playerSelection +" it's a tie!")
+        } else if ((playerSelection === "Rock" && computerSelection === "Scissors") ||
+                   (playerSelection === "Paper" && computerSelection === "Rock") ||
+                   (playerSelection === "Scissors" && computerSelection === "Paper")) {
+                       console.log("You chose " + playerSelection + " and Computer chose " + computerSelection + ". You win!")
+                   } else {
+                       console.log("You chose " + playerSelection + " and Computer chose " + computerSelection + ". You lose!")
+                   }
+        // if not equal, determine if playerSelection wins or loses;
+        // if player chose rock, player beats computer if computer chooses scisscors, otherwise player loses (tie already tested)
+        // if player chose paper, player beats computer if computer chooses rock, otherwise players loses
+        // if player chose scissors, player beats computer if computer chooses paper, otherwise player loses
+        // in each case except tie increment scores (in game() function?) by 1
     }
 
         // game function - testing loop
