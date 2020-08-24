@@ -9,99 +9,88 @@
 
     //https://www.theodinproject.com/courses/web-development-101/lessons/rock-paper-scissors?ref=lnav
 
-    //Your game is going to play against the computer, so begin with a function
-    //called computerPlay that will randomly return either ‘Rock’, ‘Paper’ or 
-    //‘Scissors’. We’ll use this function in the game to make the computer’s play.
-
-    //Write a function that plays a single round of Rock Paper Scissors. The
-    //function should take two parameters - the playerSelection and
-    //computerSelection - and then return a string that declares the winner of
-    //the round like so: "You Lose! Paper beats Rock"
-
     //Describe
     //Plan
     //Decompose
 
     //Description
 
+    //function computerPlay(){
+    //  let choice =  Math.floor(Math.random() * 3);
+    //   if (choice === 0) {
+    //       return "Rock";
+    //   } else if (choice === 1) {
+    //       return "Paper";
+    //   } else {
+    //       return "Scissors";
+    //   }
+    //}
+
     function computerPlay(){
-       let choice =  Math.floor(Math.random() * 3);
-       if (choice === 0) {
-           return "Rock";
-       } else if (choice === 1) {
-           return "Paper";
-       } else {
-           return "Scissors";
-       }
-    }
-
-        // test array for same function
-
-    function computerPlay2(){
         let choice = ["Rock" , "Paper" , "Scissors"];
         return choice[Math.floor(Math.random() * choice.length)]
     }
 
     function playerPlay(){
-        // prompt the player to enter their choice (offer options?)
-        let playerChoice; //= prompt("Choose your weapon! Please enter Rock, Paper or Scissors.", "");
-        // convert that string to initial capital and then lower case, eg rOcK to Rock
-        let choiceFormatted; //= playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
+        let playerChoice; 
+        let choiceFormatted;
         let test;
-        //return choiceFormatted; // test
-        // check that option entered is one of either Rock, Paper or Scissors
-        do { //get playerChoice, convert to correct format in choiceFormatted
-             //if not one of the options repeat request
+        do { 
             playerChoice = prompt("Choose your weapon! Please enter Rock, Paper or Scissors.", "");
             choiceFormatted = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
-            // test choice is a valid input
             if(choiceFormatted === "Rock" || choiceFormatted === "Paper" || choiceFormatted === "Scissors") {
-                //pass 1 to break while
                 test = 1;
             }      
         } while (test != 1);
         return choiceFormatted;
-        //test output
-        // Request input again until option entered is one of the above
-        // Return the selected option
     }
 
     function playRound(playerSelection,computerSelection) {
-        // computerPlay gives us the computer Selection
-        // playerSelection gives us the players choice (new function?)
-        // compare the players choice to the computer selection using the normal logic
-        // return a win or lose message depending on result via console.log()
         playerSelection = playerPlay();
         computerSelection = computerPlay();    
-        //console.log(playerSelection); // testing if the argument will take the user input directly
-        //console.log(computerSelection); // testing the function call
-
-        // GAME LOGIC
-        // first test if both selections are equal, record tie and do not adjust the score
         if (playerSelection === computerSelection) {
-            console.log("Player and Computer chose " + playerSelection +" it's a tie!")
+            return 0;
         } else if ((playerSelection === "Rock" && computerSelection === "Scissors") ||
                    (playerSelection === "Paper" && computerSelection === "Rock") ||
                    (playerSelection === "Scissors" && computerSelection === "Paper")) {
-                       console.log("You chose " + playerSelection + " and Computer chose " + computerSelection + ". You win!")
+                        return 1;
                    } else {
-                       console.log("You chose " + playerSelection + " and Computer chose " + computerSelection + ". You lose!")
+                        return 2;
                    }
-        // if not equal, determine if playerSelection wins or loses;
-        // if player chose rock, player beats computer if computer chooses scisscors, otherwise player loses (tie already tested)
-        // if player chose paper, player beats computer if computer chooses rock, otherwise players loses
-        // if player chose scissors, player beats computer if computer chooses paper, otherwise player loses
-        // in each case except tie increment scores (in game() function?) by 1
     }
 
-        // game function - testing loop
-
+        // game function
+        // run the playRound function 5 times
+        // adjust either the playerScore or computerScore or ties depending on the result
+        // after 5 rounds, compare playerScore to computerScore and report who won - either it is a tie, players wins or player loses
+        
     function game() {
+        //set playerScore,computerScore and ties to 0
+        let playerScore = 0;
+        let computerScore = 0;
+        let ties = 0; //exists for tesing only
+        // run the playRound function 5 times
         for (i=0; i <5; i++) {
-            console.log(i);
+             if (playRound() === 0) {
+                 console.log("tie")
+                 ties = ties +1;
+             } else if (playRound() === 1) {
+                 console.log("player win");
+                 playerScore = playerScore + 1;
+             } else {
+                 console.log("computer win");
+                 computerScore = computerScore + 1;
+             }
         }
+        if (playerScore === computerScore) {
+            console.log("You scored " + playerScore + " and the Computer scored " + computerScore + ". It's a tie!");
+        } else if (playerScore > computerScore) {
+            console.log("You scored " + playerScore + " and the Computer scored " + computerScore + ". You win!");
+        } else {
+            console.log("You scored " + playerScore + " and the Computer scored " + computerScore + ". You lose!");
+        }
+        return "Player Score: " + playerScore + " Computer Score: " + computerScore + " (there were " + ties + " ties)";  //test outputs
     }
-
   </script>
 </body>
 </html>
