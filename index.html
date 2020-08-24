@@ -7,27 +7,8 @@
 <body>
   <script>
 
-    //https://www.theodinproject.com/courses/web-development-101/lessons/rock-paper-scissors?ref=lnav
-
-    //Describe
-    //Plan
-    //Decompose
-
-    //Description
-
-    //function computerPlay(){
-    //  let choice =  Math.floor(Math.random() * 3);
-    //   if (choice === 0) {
-    //       return "Rock";
-    //   } else if (choice === 1) {
-    //       return "Paper";
-    //   } else {
-    //       return "Scissors";
-    //   }
-    //}
-
     function computerPlay(){
-        let choice = ["Rock" , "Paper" , "Scissors"];
+        let choice = ["rock" , "paper" , "scissors"];
         return choice[Math.floor(Math.random() * choice.length)]
     }
 
@@ -36,11 +17,16 @@
         let choiceFormatted;
         let test;
         do { 
-            playerChoice = prompt("Choose your weapon! Please enter Rock, Paper or Scissors.", "");
-            choiceFormatted = playerChoice.charAt(0).toUpperCase() + playerChoice.slice(1).toLowerCase();
-            if(choiceFormatted === "Rock" || choiceFormatted === "Paper" || choiceFormatted === "Scissors") {
+            playerChoice = prompt("Choose your weapon! Please enter Rock, Paper or Scissors.", " ");
+            if (playerChoice === null){
+                playerChoice = "invalid";
+            }
+            choiceFormatted = playerChoice.toLowerCase();
+            if(choiceFormatted === "rock" || choiceFormatted === "paper" || choiceFormatted === "scissors") {
                 test = 1;
-            }      
+            } else {
+                alert("Please enter Rock, Paper or Scissors!");
+            }     
         } while (test != 1);
         return choiceFormatted;
     }
@@ -50,31 +36,24 @@
         computerSelection = computerPlay();    
         if (playerSelection === computerSelection) {
             return 0;
-        } else if ((playerSelection === "Rock" && computerSelection === "Scissors") ||
-                   (playerSelection === "Paper" && computerSelection === "Rock") ||
-                   (playerSelection === "Scissors" && computerSelection === "Paper")) {
+        } else if ((playerSelection === "rock" && computerSelection === "scissors") ||
+                   (playerSelection === "paper" && computerSelection === "rock") ||
+                   (playerSelection === "scissors" && computerSelection === "paper")) {
                         return 1;
                    } else {
                         return 2;
                    }
     }
 
-        // game function
-        // run the playRound function 5 times
-        // adjust either the playerScore or computerScore or ties depending on the result
-        // after 5 rounds, compare playerScore to computerScore and report who won - either it is a tie, players wins or player loses
-        
+      
     function game() {
-        //set playerScore,computerScore and ties to 0
         let playerScore = 0;
         let computerScore = 0;
-        let ties = 0; //exists for tesing only
-        // run the playRound function 5 times
         for (i=0; i <5; i++) {
-             if (playRound() === 0) {
-                 console.log("tie")
-                 ties = ties +1;
-             } else if (playRound() === 1) {
+            let result = playRound();
+             if (result === 0) {
+                 console.log("tie");
+             } else if (result === 1) {
                  console.log("player win");
                  playerScore = playerScore + 1;
              } else {
@@ -89,7 +68,6 @@
         } else {
             console.log("You scored " + playerScore + " and the Computer scored " + computerScore + ". You lose!");
         }
-        return "Player Score: " + playerScore + " Computer Score: " + computerScore + " (there were " + ties + " ties)";  //test outputs
     }
   </script>
 </body>
