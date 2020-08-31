@@ -1,0 +1,69 @@
+html{
+    background: linear-gradient(to left top, rgba(238, 4, 133, 0.699), rgb(0, 128, 128)) fixed;
+    font-size: 30px;
+}
+
+body,html{
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+}
+
+@font-face {
+    font-family: 'Bangers';
+    src:"https://fonts.googleapis.com/css2?family=Bangers&display=swap";
+}
+
+h1 {
+    color: white;
+    font-family: Bangers, cursive;
+    font-size: 150px;
+    align-content: center;
+    text-shadow: 5px 10px .2rem #000000;
+    text-align: center;
+    }
+
+.title {
+    grid-template-columns: auto auto;
+    justify-self: center;
+}
+
+.scoreContainer {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    justify-items: center;
+    justify-content: center;
+    grid-gap: 0px 50px;
+    
+}
+
+.buttons {
+    display: grid;
+    margin: 0;
+    padding: 10%;
+    grid-gap: 10px 0px;
+}
+
+#computerScore {
+    color: white;
+    font-family: Bangers, cursive;
+    font-size: 75px;
+    text-shadow: 5px 10px .2rem #000000;
+    text-align: center;
+}
+
+#playerScore {
+    color: white;
+    font-family: Bangers, cursive;
+    font-size: 75px;
+    text-shadow: 5px 10px .2rem #000000;
+    text-align: center;
+}
+
+#break {    color: white;
+    font-family: Bangers, cursive;
+    font-size: 75px;
+    text-shadow: 5px 10px .2rem #000000;
+    text-align: center;
+}
